@@ -43,17 +43,17 @@
       $this->setId($result['id']);
     }
 
-    // static function find($search_id) {
-    //   $found_task = null;
-    //   $items = Inventory::getAll();
-    //   foreach ($items as $item) {
-    //     $task_id = $item->getId();
-    //     if ($task_id == $search_id) {
-    //       $found_task = $item;
-    //     }
-    //   }
-    //   return $found_task;
-    // }
+    static function find($name) {
+      $found_item = null;
+      $items = Inventory::getAll();
+      foreach ($items as $item) {
+        $item_name = $item->getName();
+        if ($item_name == $name) {
+          $found_item = $item;
+        }
+      }
+      return $found_item;
+    }
 
     static function getAll() {
       $returned_items = $GLOBALS['DB']->query("SELECT * FROM items;");
