@@ -1,7 +1,6 @@
 <?php
   require_once __DIR__."/../vendor/autoload.php";
-  require_once __DIR__."/../src/Task.php";
-  require_once __DIR__."/../src/Category.php";
+  require_once __DIR__."/../src/Inventory.php";
 
   $app = new Silex\Application();
 
@@ -15,33 +14,18 @@
     return $app['twig']->render('index.twig');
   });
 
-  $app->get("/tasks", function() use ($app) {
-    return $app['twig']->render('tasks.twig', array('tasks' => Task::getAll()));
+  $app->get("/items", function() use ($app) {
+    return $app['twig']->render('items.twig', array('items' => Inventory::getAll()));
   });
 
-  $app->get("/categories", function() use ($app) {
-    return $app['twig']->render('categories.twig', array('categories' => Category::getAll()));
-  });
-
-  $app->post("/categories", function() use ($app) {
-    $category = new Category($_POST['name']);
+  $app->post("/items", function() use ($app) {
+    $category = new Inventory($_POST['name']);
     $category->save();
-    return $app['twig']->render('categories.twig', array('categories' => Category::getAll()));
+    return $app['twig']->render('items.twig', array('items' => Inventory::getAll()));
   });
 
-  $app->post("/tasks", function() use ($app) {
-    $task = new Task($_POST['description']);
-    $task->save();
-    return $app['twig']->render('tasks.twig', array('tasks' => Task::getAll()));
-  });
-
-  $app->post("/deleteTasks", function() use ($app) {
-    Task::deleteAll();
-    return $app['twig']->render('index.twig');
-  });
-
-  $app->post("/deleteCategories", function() use ($app) {
-    Category::deleteAll();
+  $app->post("/deleteItems", function() use ($app) {
+    Inventory::deleteAll();
     return $app['twig']->render('index.twig');
   });
 

@@ -58,7 +58,7 @@
     static function getAll() {
       $returned_items = $GLOBALS['DB']->query("SELECT * FROM items;");
       $items = array();
-      foreach($returned_items as $item) {
+      foreach ($returned_items as $item) {
         $name = $item['name'];
         $number = $item['number'];
         $id = $item['id'];

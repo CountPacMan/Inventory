@@ -1,28 +1,28 @@
 <html>
     <head>
       <link rel='stylesheet' href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
-        <title>To Do List</title>
+        <title>Inventory!</title>
     </head>
     <body>
       <div class='container'>
-        <h1>To Do List</h1>
-        {% if tasks is not empty %}
-        <p>Here are all of your tasks:</p>
+        <h1>Inventory</h1>
+        {% if items is not empty %}
+        <p>Here are all of your items:</p>
         <ul>
-            {% for task in tasks %}
-                <li>{{ task.getDescription }}</li>
+            {% for item in items %}
+                <li>{{ item.getName }}</li>
             {% endfor %}
         </ul>
         {% endif %}
 
-        <form action='/tasks' method='post'>
+        <form action='/items' method='post'>
           <div class='form-group'>
-            <label for='description'>Task Description</label>
-            <input id='description' name='description' class='form-control' type='text'>
+            <label for='name'>Item name</label>
+            <input id='name' name='name' class='form-control' type='text'>
           </div>
-            <button type='submit' class='btn btn-success'>Add task</button>
+            <button type='submit' class='btn btn-success'>Add item</button>
         </form>
-        <form action='/deleteTasks' method='post'>
+        <form action='/deleteItems' method='post'>
             <button type='submit' class='btn btn-danger'>Delete</button>
         </form>
         <form action='/' method='get'>
